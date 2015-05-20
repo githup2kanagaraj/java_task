@@ -3,6 +3,9 @@
     <output-path>$PROJECT_DIR$/out/artifacts/VWSmarttvHiveUDF_jar</output-path>
     <root id="archive" name="VWSmarttvHiveUDF.jar">
       <element id="module-output" name="VWSmarttvHiveUDF" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../hive-common-0.13.1-cdh5.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../guava-18.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../hive-exec-0.13.1-cdh5.3.0.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

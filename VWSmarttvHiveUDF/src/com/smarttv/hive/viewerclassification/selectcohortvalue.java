@@ -9,31 +9,30 @@ import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.hive.ql.udf.UDFType;
 
+import java.util.HashMap;
 import java.util.Map;
+
 
 @UDFType(deterministic = false)
 @Description(name="selectcohortvalue")
 
-public class selectcohortvalue {
+public class selectcohortvalue extends UDF {
 
-    private String map_function(String cohort_string, int select_key)
+    public selectcohortvalue() {}
+
+    public String evaluate(String cohort_string, String select_key)
     {
-        Map<String, String> cohortmap;
-
-        {
-            cohortmap = Splitter.on(",").withKeyValueSeparator(":").split(cohort_string);
+       if (cohort_string!=null)
+       {
+            Map<String, String> cohortmap = new HashMap<String, String>();
+            cohortmap = Splitter.on(",").withKeyValueSeparator("~").split(cohort_string);
+            String value = cohortmap.get(select_key);
+            return value;
         }
-
-        String value;
-            value = cohortmap.get(select_key);
-        return  value;
-    }
-
-    public static  void main(String args[])
-    {
-        selectcohortvalue obj = new selectcohortvalue();
-
-        System.out.println(obj.map_function("{100 :kanagaraj,200: raj}", 100));
+       else
+       {
+            return null;
+       }
     }
 
 }
